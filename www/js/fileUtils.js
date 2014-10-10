@@ -158,10 +158,12 @@
             0,
             currentLocation.lastIndexOf('/') + 1
         );
-        var indexOfWWW = currentLocation.indexOf('/www/');
-        if (indexOfWWW != -1) {
+        if (currentLocation.indexOf('x-wmapp0') != -1) {
+            pathToWWW = 'x-wmapp0:www/';
+        }else{
             pathToWWW = currentLocation.substring(0, indexOfWWW + 5);
         }
+        console.log('path: ' + pathToWWW);
         return pathToWWW;
     }
 

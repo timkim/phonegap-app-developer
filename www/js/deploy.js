@@ -147,9 +147,9 @@
                 var fileTransfer = new FileTransfer();
                 var uri = encodeURI(options.address + '/__api__/zip');
                 var timeStamp = Math.round(+new Date()/1000);
-                var downloadPath = fileSystem.root.toURL() + 'app' + timeStamp + '.zip';
-                var dirPath =  fileSystem.root.toURL() + 'app' + timeStamp;
-
+                var downloadPath = fileSystem.root.toURL() + 'www/app' + timeStamp + '.zip';
+                var dirPath =  fileSystem.root.toURL() + 'www/app' + timeStamp;
+                console.log('downloadPath ' + downloadPath);
                 fileTransfer.download(
                     uri,
                     downloadPath,
@@ -164,6 +164,7 @@
                                 var localFiles = [
                                     'cordova.js',
                                     'cordova_plugins.js',
+                                    'test.html',
                                     'js/deploy.js',
                                     'js/fileUtils.js'
                                 ];
@@ -172,9 +173,30 @@
                                     localFiles.push(plugins[i].file);
                                 }
 
-                                window.phonegap.fileUtils.getDirectory('app' + timeStamp, function(appDirEntry){
+                                window.phonegap.fileUtils.getDirectory('www/app' + timeStamp, function(appDirEntry){
                                     window.phonegap.fileUtils.copyFiles(localFiles, appDirEntry, function(){
-                                        window.location.href = dirPath + '/index.html';
+                                    
+                                        var xhrPath = 'x-wmapp0:' + 'www' + '/test.html';
+                                        console.log(xhrPath)
+
+                                        $.ajax({
+                                            type: 'GET',
+                                            url: xhrPath,
+                                            success: function (res) {
+                                                console.log('result: ' + res);
+                                                 window.location.href = appDirEntry.fullPath + '/index.html'
+                                                
+                                            },
+                                            error: function (xhr, type) {
+                                                console.log('xhr status ' + xhr.status);
+                                            }
+                                        });
+                                        
+                                        /*
+                                        $.get('x-wmapp0:' + dirPath.substring(1,dirPath.length) + '/index.html', function (res) {
+                                            console.log('index', res);
+                                        });
+                                        */
                                     }, function(){
                                         // error out copying over localFiles
                                     });

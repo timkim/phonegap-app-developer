@@ -57,6 +57,9 @@
     <feature name="Camera">
         <param name="wp-package" value="Camera" />
     </feature>
+    <feature name="Zip">
+        <param name="wp-package" value="UnZip" />
+    </feature>
     <name>PhoneGap</name>
     <description>
         The PhoneGap Developer app is a testing utility for web developers
@@ -88,7 +91,4 @@
     <preference name="WebViewBounce" value="false" />
     <access origin="*" />
     <content src="index.html" />
-    <feature name="Zip">
-        <param name="wp-package" value="UnZip" />
-    </feature>
 </widget>
