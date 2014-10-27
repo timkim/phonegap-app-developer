@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /*
        Licensed to the Apache Software Foundation (ASF) under one
        or more contributor license agreements.  See the NOTICE file
@@ -17,16 +19,9 @@
        under the License.
 */
 
-var Q     = require('q'),
-    path  = require('path'),
-    shell = require('shelljs');
+var clean = require('./lib/clean');
 
-var ROOT = path.join(__dirname, '..', '..');
-
-module.exports.run = function (argv) {
-    var projectPath = ROOT;
-    ['obj', 'Bin'].forEach(function(dir) {
-        shell.rm('-rf', path.join(projectPath, dir));
-    });
-    return Q.resolve();
-};
+clean.run(process.argv).done(null, function(err) {
+    console.error('ERROR: ' + err);
+    process.exit(2);
+});
