@@ -63,6 +63,9 @@
     <plugin name="phonegap-plugin-mobile-accessibility" spec="~1.0.4" />
     <plugin name="com.wikitude.phonegap.WikitudePlugin" spec="https://github.com/timkim/wikitude-cordova-plugin.git#devApp" />
     <plugin name="cordova-plugin-screen-orientation" spec="~2.0.0" />
+    <plugin name="phonegap-plugin-service-worker" spec="https://github.com/phonegap/phonegap-plugin-service-worker" />
+    <preference name="ServiceWorker" value="service-worker.js" />
+    <preference name="CacheCordovaAssets" value="true" />
     <platform name="ios">
         <preference name="Orientation" value="all" />
         <preference name="AutoHideSplashScreen" value="false" />
